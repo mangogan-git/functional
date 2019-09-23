@@ -1,4 +1,4 @@
-# Essential features
+# 一些特性
 這部份會介紹一些常用的特性與常見的錯誤
 
 --
@@ -58,7 +58,7 @@ printName(); // ?
 <!-- .element: class="fragment" data-fragment-index="1" -->
 在 瀏覽器中會輸出 `"outside"`
 <!-- .element: class="fragment" data-fragment-index="2" -->
-在[嚴格模式](#/appendix_strict)下會拋出例外  
+在[嚴格模式](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Strict_mode)下會拋出例外  
 <!-- .element: class="fragment" data-fragment-index="3" -->
 `TypeError: Cannot read property 'name' of undefined`
 <!-- .element: class="fragment error" data-fragment-index="3" -->
@@ -67,7 +67,7 @@ printName(); // ?
 
 ### var, let, const
 
-我們先講 `var` 跟 `let`, `const` 的[差別](#/appendix_declare)
+我們先講 `var` 跟 `let`, `const` 的差別
 <pre><code class="hljs javascript" data-line-numbers="1,5" data-trim>
 var name = 'outside';
 function printName(){
@@ -84,11 +84,11 @@ function printName(){
 printName(); // undefined
 </code></pre>
 
-`var` 會把你的變數暴露到全域物件
+> `var` 會把你的變數暴露到全域物件
 
 --
 
-run in [repel](https://repl.it/repls/WatchfulPeskyTree)
+run in [REPL](https://repl.it/repls/WatchfulPeskyTree)
 <iframe height="600px" width="100%" src="https://repl.it/repls/WatchfulPeskyTree?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals">
 
 ```js
@@ -110,7 +110,7 @@ function printName(){
 }
 ```
 
-也避免使用 `var`，用 `var` 會有變數提升([hoisting](https://developer.mozilla.org/zh-TW/docs/Glossary/Hoisting)) 與暴露到全域的問題
+也避免使用 `var`，用 `var` 會有變數提升([hoisting](#/appendix_hoisting)) 與暴露到全域的問題
 
 --
 
@@ -136,7 +136,7 @@ getFbName(); // 問題就出在這
 
 1. `getFbName()`: 預設情況下 **this** 會指向全域物件
 2. 全域物件在 NodeJs 裡面是 **"global"**, 瀏覽器下是 **"window"**
-3. [嚴格模式](#/appendix_strict)下拋出例外
+3. [嚴格模式](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Strict_mode)下拋出例外
 
 <pre><code class="hljs javascript" data-line-numbers="2" data-trim>
 const getFbName = userModelOfTheFacebook.getName;
@@ -148,7 +148,7 @@ Note:
 
 --
 
-run in [repel](https://repl.it/repls/HeartfeltHospitableHypercard)
+run in [REPL](https://repl.it/repls/HeartfeltHospitableHypercard)
 <iframe height="600px" width="100%" src="https://repl.it/repls/HeartfeltHospitableHypercard?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals">
 
 ```js
@@ -165,10 +165,58 @@ printNameStrictMode();
 
 --
 
-## 改變 "this"
+### 改變 "this"
 
-<pre><code class="hljs javascript" data-line-numbers="2" data-trim>
+**不要**這樣做
+<pre><code class="hljs javascript" data-line-numbers="1" data-trim>
 const getFbName = userModelOfTheFacebook.getName;
-getFbName();
 </code></pre>
-這裡簡單描述，詳細請見此篇 [slides](https://slides.com/mangogan/js_this)
+
+改成這樣
+<pre><code class="hljs javascript" data-line-numbers="2" data-trim>
+const getFbName = 
+  userModelOfTheFacebook.getName.bind(userModelOfTheFacebook);
+</code></pre>
+
+或是利用 `Function.prototype.apply`, `Function.prototype.call`
+<br/>
+<br/>
+這裡簡單描述，更多 "this" 的描述請看這篇 [slides](https://slides.com/mangogan/js_this)
+
+--
+
+Object's method in **ES5**
+
+<pre><code class="hljs javascript" data-line-numbers="3-5" data-trim>
+const user = {
+    _name: 'Jeff',
+    getName: function(){
+        return this._name;
+    },
+};
+</code></pre>
+
+--
+
+Object's method in **ES6**
+<pre><code class="hljs javascript" data-line-numbers="3-5" data-trim>
+const user = {
+    _name: 'Jeff',
+    getName(){
+        return this._name;
+    },
+};
+</code></pre>
+
+--
+
+注意不要寫成箭頭函式 ([Arrow Function](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Arrow_functions))
+<pre><code class="hljs javascript" data-line-numbers="3-5,7" data-trim>
+const user = {
+    _name: 'Jeff',
+    getName: () => {
+        return this._name;
+    },
+};
+user.getName(); // undefined
+</code></pre>

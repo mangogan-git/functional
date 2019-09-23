@@ -129,7 +129,7 @@ console.log(`dog say: ${Sound[Animal.DOG]}`);
 --
 
 建議寫成這種結構
-```js
+<pre><code class="hljs javascript" data-line-numbers="7,8" data-trim>
 const Animal = {
     DOG: 0,
     CAT: 1,
@@ -139,8 +139,7 @@ const Sound = {
     [Animal.DOG]: 'Bark!',
     [Animal.CAT]: 'meow~',
 };
-
-```
+</code></pre>
 
 ---
 

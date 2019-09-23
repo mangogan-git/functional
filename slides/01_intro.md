@@ -31,13 +31,14 @@ TODO...
 
 - JS 基本的語法結構
 - ES5、ES6 的差異
-- 變數提升 (Hosting)
-- 閉包 (closure)
+- 變數提升 ([Hoisting](#/appendix_hoisting))
+- 閉包 ([Closure](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Closures))
 - [prototype](https://slides.com/mangogan/jsprototype#/)
 
 這些 JS 的特性
 
 Note: 我會介紹一些我覺得比較重要的特性，其他的補充資料可以參考附錄
+
 --
 
 在這份 Slides 中會提到:
@@ -56,11 +57,11 @@ Note: 我會介紹一些我覺得比較重要的特性，其他的補充資料�
 一些名詞對照
 
 - **Object**: 物件，大陸翻譯 "对象"
-- **Function**: 函式，物件中的屬性稱 方法
+- **Function**: 函式，物件中的屬性稱 "方法"
 
 --
 
-參考書目
+其他參考資料
 
-[ECMAScript 6 入门](http://es6.ruanyifeng.com/)
-[devdocs.io](https://devdocs.io/javascript/)
+- [ECMAScript 6 入门](http://es6.ruanyifeng.com/)
+- [devdocs.io](https://devdocs.io/javascript/)
