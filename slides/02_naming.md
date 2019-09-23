@@ -1,66 +1,4 @@
-<style type="text/css">
-  /********************************************* 
-  * HEADERS
-  *********************************************/
-  .reveal h1 { 1.6em; }
-  .reveal h2 { 1.4em; }
-  .reveal h3 { 1.2em; }
-  .reveal h4 { 1em; }
-
-  /********************************************* 
-  * FONT
-  *********************************************/
-  .reveal p.left {
-      
-  }
-
-  /********************************************* 
-  * CODE
-  *********************************************/
-  .reveal pre {
-      /* font-size: 1em; */
-  }
-  .reveal pre code {
-      max-height: 80%;
-  }
-</style>
-
-# TITLE
-Javascript...
-
----
-我們假設你已經知道了:
-
-- var, let ,const 的差異
-- 變數提升 (Hosting)
-- 閉包 (closure)
-- this (context 上下文)
-- prototype
-
-這些 JS 的特性
-
---
-
-在這裡會提到
-
-- 命名慣例、規範
-- 常用的 API
-- Functional Programming
-
----
-
-# ...
-[LINK](#/appendix)
-[LINK](#/naming)
-
-Note:
-# 大綱
-常用 API
-組合與繼承
-常見的錯誤
-
----
-# 命名慣例
+# Naming Convention
 <!-- .slide: id="naming" -->
 
 Variable
@@ -80,7 +18,12 @@ const Enum = {
 
 const PI = 3.14;
 ```
-<!-- .element: style="font-size: 100%;" -->
+
+Note: 
+1. 私有成員用 **_** 開頭
+2. 列舉值首字大寫
+3. 常數全大寫
+4. 變數與函數命名用駝峰方式，首字小寫
 
 --
 
@@ -89,11 +32,83 @@ Function
 function nameCamelCase(){
     // ...
 }
+
+const obj = {
+    _privateMethod(){
+
+    },
+
+    publicMethod(){
+
+    }
+}
+```
+
+> 有時候會用 **$** 做變數開頭 (Jquery)，通常代表該變數是 [DOM](https://developer.mozilla.org/zh-TW/docs/Web/API/Document_Object_Model) 物件
+<!-- .element: class="fragment" data-fragment-index="1" -->
+
+Note:
+習慣上也是使用底線 **_** 來區分私有函式與公用函釋
+不過在 JS 中並沒有真正的 private
+
+--
+
+# 語句結構 (statements)
+
+## if...else
+```js
+if(true) {
+    // ...
+}
+// comment here
+else {
+    // ...
+}
+```
+> 這邊是我們的習慣，看團隊中的規範  
+> 這裡有一篇[討論](https://github.com/airbnb/javascript/issues/325)可以參考
+<!-- .element: class="fragment" data-fragment-index="1" -->
+
+--
+
+## enum
+當你有兩個列舉是互相有直接關係的
+```js
+const Animal = {
+    DOG: 0,
+    CAT: 1,
+};
+
+const Sound = {
+    '0': 'Bark!',
+    '1': 'meow~',
+};
+// 或是寫成 array ['Bark!', 'meow~']
+
+console.log(`dog say: ${Sound[Animal.DOG]}`);
+// "dog say: Bark!"
+```
+
+--
+
+建議寫成這種結構
+```js
+const Animal = {
+    DOG: 0,
+    CAT: 1,
+};
+
+const Sound = {
+    [Animal.DOG]: 'Bark!',
+    [Animal.CAT]: 'meow~',
+};
+
 ```
 
 ---
 
 # 註解風格
+習慣上採用 [JSDoc](https://jsdoc.app/) 的註解風格, 有時候會混用一些 TypeScript 的註解方式
 
 Number
 ```js
@@ -141,10 +156,7 @@ function sum(param) {
 
 --
 
-Destructuring parameter 
-
-[reference](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
-
+解構賦值 ([Destructuring parameter](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment))
 ```js
 /**
  * @param {Object} param
@@ -209,11 +221,4 @@ function upperCase(str) {
 
 see more at:
 - [JSDoc](https://jsdoc.app/)
-- [devdocs.io](https://devdocs.io/jsdoc/)
-
-
----
-
-# iframe
-
-<iframe width="100%" height="600px" src="//jsfiddle.net/duskyhell/wbnLah2j/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+- [aribnb javascript style guide](https://github.com/airbnb/javascript)
