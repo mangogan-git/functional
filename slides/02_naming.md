@@ -1,7 +1,7 @@
 # Naming Convention
 <!-- .slide: id="naming" -->
 
-Variable
+## Variable
 ```js
 /** @type {string} */
 const _private = '_private';
@@ -27,7 +27,7 @@ Note:
 
 --
 
-Function
+## Function
 ```js
 function nameCamelCase(){
     // ...
@@ -53,6 +53,31 @@ Note:
 
 --
 
+## Class
+
+類別名稱首字大寫
+```js
+class User {
+    constructor(name){
+        this.name = name;
+        // ...
+    }
+
+    greeting(){
+        return `Hello, ${this.name}`;
+    }
+}
+
+// or
+
+const Animal = function(name){ this.name = name;};
+Animal.prototype.greeting = 
+    function(){return `Hello, ${this.name}`}
+
+```
+
+--
+
 # 語句結構 (statements)
 
 ## if...else
@@ -68,6 +93,18 @@ else {
 > 這邊是我們的習慣，看團隊中的規範  
 > 這裡有一篇[討論](https://github.com/airbnb/javascript/issues/325)可以參考
 <!-- .element: class="fragment" data-fragment-index="1" -->
+
+--
+
+## String
+
+```js
+const someText = 'aegis';
+
+const otherText = 'pwd "how do you turn this on"';
+```
+表示一個字串可以用 雙引號 **"..."*** 或單引號 ***'...'***  
+我們習慣上統一使用單引號 **'...'***
 
 --
 

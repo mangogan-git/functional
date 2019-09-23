@@ -29,6 +29,7 @@
     <div class="slides">
       <section data-markdown="/slides/01_intro.md" data-separator="^---" data-separator-vertical="^--" data-separator-notes="^Note:" data-charset="utf-8"></section>
       <section data-markdown="/slides/02_naming.md" data-separator="^---" data-separator-vertical="^--" data-separator-notes="^Note:" data-charset="utf-8"></section>
+      <section data-markdown="/slides/03_common_features.md" data-separator="^---" data-separator-vertical="^--" data-separator-notes="^Note:" data-charset="utf-8"></section>
       <section data-markdown="/slides/functional.md" data-separator="^---" data-separator-vertical="^--" data-separator-notes="^Note:" data-charset="utf-8"></section>
       <section data-markdown="/slides/appendix.md" data-separator="^---" data-separator-vertical="^--" data-separator-notes="^Note:" data-charset="utf-8"></section>
     </div>
@@ -50,6 +51,25 @@
         { src: 'plugin/highlight/highlight.js', async: true },
         { src: 'plugin/zoom-js/zoom.js', async: true },
       ]
+    });
+
+    let previousState = null;
+    let currentState = null;
+
+    Reveal.addEventListener( 'ready', function( event ) {
+      // event.currentSlide, event.indexh, event.indexv
+      currentState = Reveal.getState();
+    });
+
+    Reveal.addEventListener( 'slidechanged', function( event ) {
+      // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+      previousState = currentState;
+      currentState = Reveal.getState();
+    });
+
+    // return previous slides when press "Backspace"
+    Reveal.addKeyBinding( { keyCode: 8, key: 'Backspace', description: 'Back' }, function() {
+      Reveal.setState(previousState);
     });
   </script>
 </body>

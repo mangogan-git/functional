@@ -4,21 +4,27 @@
   *********************************************/
   .reveal .left {
       text-align: left;
+  }  
+  .reveal p.error {
+      color: #ff0066;
   }
-
   /********************************************* 
   * CODE
   *********************************************/
+  .reveal blockquote p{
+	font-size: 1em;
+  }
   .reveal pre {
-      /* font-size: 1em; */
+      font-size: 1em;
   }
   .reveal pre code {
       max-height: 80%;
+      padding: 10px;
   }
 </style>
 
 # TITLE
-Javascript...
+TODO...
 
 ---
 假設你已經知道了:
@@ -27,7 +33,7 @@ Javascript...
 - ES5、ES6 的差異
 - 變數提升 (Hosting)
 - 閉包 (closure)
-- prototype
+- [prototype](https://slides.com/mangogan/jsprototype#/)
 
 這些 JS 的特性
 
@@ -41,17 +47,20 @@ Note: 我會介紹一些我覺得比較重要的特性，其他的補充資料�
 - 常見的錯誤
 - 常用的工具網站
 
-> 後面提到的 JS 皆是在 NodeJS 下執行的結果，我們不會特別討論與瀏覽器之間的差異，撰寫此文時我用的版本是 `10.15.3`
----
+> 後面提到的 JS 皆是在 NodeJS 下執行的結果，我們不會特別討論與瀏覽器之間的差異，撰寫此文時我用的版本是 **10.15.3**  
+> 
+> 如果你還沒有安裝 NodeJs，可以在[這裡](https://repl.it/languages/nodejs)做一些測試
 
-# ...
-[LINK](#/appendix)
-[LINK](#/naming)
+--
 
+一些名詞對照
 
----
+- **Object**: 物件，大陸翻譯 "对象"
+- **Function**: 函式，物件中的屬性稱 方法
 
+--
 
-# iframe
+參考書目
 
-<iframe width="100%" height="600px" src="//jsfiddle.net/duskyhell/wbnLah2j/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+[ECMAScript 6 入门](http://es6.ruanyifeng.com/)
+[devdocs.io](https://devdocs.io/javascript/)
