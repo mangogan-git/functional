@@ -6,7 +6,58 @@
 
 ---
 
-## 1. 使用[箭頭函式](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Arrow_functions)取代一般函式
+## 1. 總是使用 let, const 來宣告變數
+
+`var` 宣告的變數會暴露到 scope 外
+```js
+for(var i=0; i < 10; i++){}
+console.log(i); // 10
+```
+```js
+if(something) {
+    var tmp = 'text';
+    // ...
+}
+console.log(tmp); // "text"
+```
+
+--
+使用 `let`
+```js
+for(let i =0; i < 10; i++){}
+console.log(i); // ReferenceError: i is not defined
+```
+```js
+if(something) {
+    let tmp = 'text';
+    // ...
+}
+console.log(tmp); // ReferenceError: tmp is not defined
+```
+
+-- 
+
+`const` 用來表示這這個變數不該被更改(包含其屬性)
+```js
+const n = 1;
+n = 2; // TypeError: Assignment to constant variable.
+```
+要注意的是即使透過 `const` 宣告，物件的屬性還是可以更改
+```js
+const data = {name: 'jeff'};
+data.name = 'changed';
+console.log(data.name); // "changed"
+```
+> 1. `JSON.stringify(JSON.parse(data))`
+> 2. [immutable-js](https://github.com/immutable-js/immutable-js)
+
+Note: 
+最簡單避免物件被更改的方式就是使用 JSON 轉成字串再轉回物件，缺點是遇到循環引用會拋出例外，且資料量大的話性能較差
+可以使用 facebook 出的 immutable-js
+
+---
+
+## 2. 使用[箭頭函式](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Arrow_functions)取代一般函式
 因為它看起來比較簡潔，而且綁定了上下文 (context)，避免在傳遞 callback 時出了問題
 
 // ES5
@@ -70,7 +121,7 @@ const user = {
 
 ---
 
-## 2. 使用 Default Value 取代條件判斷
+## 3. 使用 Default Value 取代條件判斷
 
 // ES5
 ```js
@@ -90,7 +141,7 @@ const stringSplit = (text, separator = " ") => text.split(separator);
 
 ---
 
-## 3. 使用[解構賦值](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)取代可選參數(optional parameter)
+## 4. 使用[解構賦值](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)取代可選參數(optional parameter)
 
 // ES5
 ```js
@@ -141,7 +192,7 @@ Note:
 
 ---
 
-## 4. 使用[字串模板](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)取代字串串接
+## 5. 使用[字串模板](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)取代字串串接
 
 // don't use
 ```js
@@ -159,7 +210,7 @@ getUserData(data => {
 
 ---
 
-## 5. 使用展開運算符([Spread Syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax))取代 arguments
+## 6. 使用展開運算符([Spread Syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax))取代 arguments
 
 // don't use
 ```js
@@ -195,7 +246,7 @@ add(...[1, 2]); //3
 
 ---
 
-## 6. 使用[解構賦值](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)取出成員變數
+## 7. 使用[解構賦值](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)取出成員變數
 
 // math_util.js
 ```js
@@ -224,7 +275,7 @@ const {add, pow} = require('math_util');
 
 ---
 
-## 7. 使用 forEach, reduce 取代 for loop
+## 8. 使用 forEach, reduce 取代 for loop
 
 // don't use
 ```js
@@ -243,6 +294,70 @@ ary.forEach(v => result+=v);
 // or
 const result = ary.reduce((v,r) => v + r);
 ```
+
+--
+
+為什麼要用 `forEach`?
+
+1. 可讀性
+
+```js
+const profileList = [
+    { id: 1, name: 'Jeff', email: 'aaa@gmail.com' },
+    { id: 2, name: 'Peter', email: 'bbb@yahoo.com'},
+    // ...
+];
+
+const winnerList = [
+    {id: 1, point: 10000},
+    {id: 2, point: 20000},
+    // ...
+];
+// notify winner
+for(let i=0; i<winnerList.length; i++) {
+    for(let j=0;j<profileList.length; i++) {
+        if(winnerList[i].id === profileList[j].id) {
+            notify(winnerList[i].point, profileList[j].email);
+            break;
+        }
+    }
+}
+```
+
+--
+
+vs.
+
+```js
+winnerList.forEach(({id, point}) => {
+    profileList.forEach(({id: profile_id, email}) => {
+        if(id === profile_id) notify(point, email);
+    });
+});
+```
+> forEach 沒有 break, 無法中斷
+
+<pre><code class="hljs javascript" data-line-numbers="2" data-trim>
+winnerList.forEach(({id, point}) => {
+    profileList.forEach(({id: profile_id, email}) => {
+        if(id === profile_id) notify(point, email);
+    });
+});
+</code></pre><!-- .element: class="fragment" data-fragment-index="1" -->
+
+
+Note:
+forEach 配合解構賦值重寫中獎通知,
+注要第 2 行 `{id: profile_id}` 這邊是把變數重新命名
+
+補充:
+
+為什麼要用 forEach?
+google: for vs foreach site:jsperf.com  
+https://jsperf.com/for-vs-foreach-vs-for-of/602  
+
+https://github.com/dg92/Performance-Analysis-JS
+https://codeburst.io/javascript-performance-test-for-vs-for-each-vs-map-reduce-filter-find-32c1113f19d7
 
 --
 
@@ -265,10 +380,32 @@ const doubleAry = ary.map(num => num * 2);
 
 --
 
-為什麼要用 forEach?
-# TODO
-google: for vs foreach site:jsperf.com  
-https://jsperf.com/for-vs-foreach-vs-for-of/602
+```js
+[].forEach((currentValue, index, source) => {
+    // ...
+}[, this]);
 
-https://github.com/dg92/Performance-Analysis-JS
-https://codeburst.io/javascript-performance-test-for-vs-for-each-vs-map-reduce-filter-find-32c1113f19d7
+[].map((currentValue, index, source) => {
+    // ...
+}[, this]);
+
+[].reduce((accumulator, currentValue, index, source)=> {
+   // ...
+   return result;
+}, initValue); // default is [][0]
+```
+
+---
+
+## 9. 總是使用 "===" 取代 "=="
+
+```js
+"1" == 1; // true
+"1" === 1; // false
+```
+
+see more Loose [equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#Loose_equality_using)
+
+---
+
+# END

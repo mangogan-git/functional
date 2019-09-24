@@ -65,9 +65,8 @@ printName(); // ?
 
 --
 
-### var, let, const
+### var, const
 
-我們先講 `var` 跟 `let`, `const` 的差別
 <pre><code class="hljs javascript" data-line-numbers="1,5" data-trim>
 var name = 'outside';
 function printName(){
