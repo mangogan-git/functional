@@ -260,6 +260,8 @@ module.export = {
 }
 ```
 
+--
+
 // don't use
 ```js
 const math = require('math_util');
@@ -299,7 +301,7 @@ const result = ary.reduce((v,r) => v + r);
 
 為什麼要用 `forEach`?
 
-1. 可讀性
+可讀性
 
 ```js
 const profileList = [
@@ -313,6 +315,12 @@ const winnerList = [
     {id: 2, point: 20000},
     // ...
 ];
+```
+假設我們要寄 email 通知給中獎的 user
+
+--
+
+```js
 // notify winner
 for(let i=0; i<winnerList.length; i++) {
     for(let j=0;j<profileList.length; i++) {
