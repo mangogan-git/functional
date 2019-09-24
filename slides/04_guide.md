@@ -352,11 +352,12 @@ winnerList.forEach(({id, point}) => {
     });
 });
 </code></pre><!-- .element: class="fragment" data-fragment-index="1" -->
-
+第 2 行 `{id: profile_id}` 這邊是把變數重新命名
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 Note:
 forEach 配合解構賦值重寫中獎通知,
-注要第 2 行 `{id: profile_id}` 這邊是把變數重新命名
+注意第 2 行 `{id: profile_id}` 這邊是把變數重新命名
 
 補充:
 
@@ -412,7 +413,7 @@ const doubleAry = ary.map(num => num * 2);
 "1" === 1; // false
 ```
 
-see more Loose [equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#Loose_equality_using)
+see more about [Loose equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#Loose_equality_using)
 
 ---
 
