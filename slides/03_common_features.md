@@ -164,7 +164,7 @@ printNameStrictMode();
 
 --
 
-### 改變 "this"
+### 被改變的 "this"
 
 **不要**這樣做
 <pre><code class="hljs javascript" data-line-numbers="1" data-trim>
@@ -219,3 +219,40 @@ const user = {
 };
 user.getName(); // undefined
 </code></pre>
+
+--
+## 參數傳遞
+
+```js
+const numericAry = [1,2,3,4,5];
+
+function filterData(source, exclude) {
+    source.splice(source.indexOf(exclude), 1);
+    return source;
+}
+
+const result = filterData(numericAry, 3); // [1,2,4,5]
+console.log(numericAry); // [1,2,4,5]
+```
+
+`Object` 或 `Array` 作為參數傳遞時要小心可能會被修改
+
+Note:
+有些 method 會改變原始的資料, 例如 Array.prototype.splice, Array.prototype.sort
+或是傳遞物件時裡面的屬性被修改
+
+--
+
+修改為
+<pre><code class="hljs javascript" data-line-numbers="2" data-trim>
+function filterData(source, exclude) {
+    let clone = source.slice();
+    source.splice(source.indexOf(exclude), 1);
+    return clone;
+}
+</code></pre>
+或是用 `filter`
+```js
+const result = numericAry.filter(v => v!==3); // [1,2,4,5]
+console.log(numericAry); // [1,2,3,4,5]
+```
