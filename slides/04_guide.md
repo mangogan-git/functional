@@ -48,7 +48,7 @@ const data = {name: 'jeff'};
 data.name = 'changed';
 console.log(data.name); // "changed"
 ```
-> 1. `JSON.stringify(JSON.parse(data))`
+> 1. `JSON.parse(JSON.stringify(data))`
 > 2. [immutable-js](https://github.com/immutable-js/immutable-js)
 
 Note: 
