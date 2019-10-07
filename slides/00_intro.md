@@ -14,11 +14,11 @@
   .reveal blockquote p{
 	font-size: 1em;
   }
-  .reveal pre {
+  /* .reveal pre {
       font-size: 1em;
-  }
+  } */
   .reveal pre code {
-      max-height: 80%;
+      /* max-height: 80%; */
       padding: 10px;
   }
 </style>

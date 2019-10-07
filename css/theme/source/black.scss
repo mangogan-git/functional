@@ -21,12 +21,12 @@ $backgroundColor: #191919;
 $mainColor: #fff;
 $headingColor: #fff;
 
-$mainFontSize: 30px;
+$mainFontSize: 28px;
 $mainFont: 'Microsoft JhengHei', 'Source Sans Pro', Helvetica, sans-serif;
 $headingFont: 'Microsoft JhengHei', 'Source Sans Pro', Helvetica, sans-serif;
 $headingTextShadow: none;
 $headingLetterSpacing: normal;
-$headingTextTransform: uppercase;
+$headingTextTransform: capitalize;
 $headingFontWeight: 600;
 $linkColor: #42affa;
 $linkColorHover: lighten( $linkColor, 15% );
