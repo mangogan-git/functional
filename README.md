@@ -1,5 +1,8 @@
 live preview: https://github.com/mangogan-git/functional
 
+# todo
+修改中...
+
 # build local:
 ```shell
 npm run start

@@ -1,6 +1,13 @@
 # Naming Convention
 <!-- .slide: id="naming" -->
 
+--
+一些名詞對照
+
+- **Object**: 物件，大陸翻譯 "对象"
+- **Function**: 函式，物件中的屬性稱 "方法"
+
+--
 ## Variable
 ```js
 /** @type {string} */
@@ -26,7 +33,6 @@ Note:
 4. 變數與函數命名用駝峰方式，首字小寫
 
 --
-
 ## Function
 ```js
 function nameCamelCase(){
@@ -52,7 +58,6 @@ Note:
 不過在 JS 中並沒有真正的 private
 
 --
-
 ## Class
 
 類別名稱首字大寫
@@ -77,7 +82,6 @@ Animal.prototype.greeting =
 ```
 
 --
-
 # 語句結構 (statements)
 
 ## if...else
@@ -95,7 +99,6 @@ else {
 <!-- .element: class="fragment" data-fragment-index="1" -->
 
 --
-
 ## String
 
 ```js
@@ -107,7 +110,6 @@ const otherText = 'pwd "how do you turn this on"';
 我們習慣上統一使用單引號 **'...'***
 
 --
-
 ## enum
 當你有兩個列舉是互相有直接關係的
 ```js
@@ -127,7 +129,6 @@ console.log(`dog say: ${Sound[Animal.DOG]}`);
 ```
 
 --
-
 建議寫成這種結構
 <pre><code class="hljs javascript" data-line-numbers="7,8" data-trim>
 const Animal = {
@@ -141,8 +142,7 @@ const Sound = {
 };
 </code></pre>
 
----
-
+--
 # 註解風格
 習慣上採用 [JSDoc](https://jsdoc.app/) 的註解風格, 有時候會混用一些 TypeScript 的註解方式
 
@@ -163,7 +163,6 @@ function sum(a, b) {
 ```
 
 --
-
 Object - style1
 ```js
 /**
@@ -178,7 +177,6 @@ function sum(param) {
 ```
 
 --
-
 Object - style2
 ```js
 /**
@@ -191,7 +189,6 @@ function sum(param) {
 ```
 
 --
-
 解構賦值 ([Destructuring parameter](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment))
 ```js
 /**
@@ -206,7 +203,6 @@ function sum({a, b}) {
 ```
 
 --
-
 Callback - style1
 ```js
 /**
@@ -222,7 +218,6 @@ function sum({a, b, cb}) {
 ```
 
 --
-
 Callback - style2
 ```js
 /**
@@ -238,7 +233,6 @@ function sum({a, b, cb}) {
 ```
 
 --
-
 String
 ```js
 /**
@@ -254,7 +248,10 @@ function upperCase(str) {
 ```
 
 --
-
 see more at:
 - [JSDoc](https://jsdoc.app/)
 - [aribnb javascript style guide](https://github.com/airbnb/javascript)
+
+Note: 
+1. 習慣上註解都使用 JSDoc 的格式
+2. 命名規範可以透過 Eslint 套件來協助檢查, 可以參考 aribnb

@@ -1,4 +1,6 @@
 # 一些特性
+<!-- .slide: id="common_features" -->
+
 這部份會介紹一些常用的特性與常見的錯誤
 
 --
@@ -109,7 +111,7 @@ function printName(){
 }
 ```
 
-也避免使用 `var`，用 `var` 會有變數提升([hoisting](#/appendix_hoisting)) 與暴露到全域的問題
+也避免使用 `var`，用 `var` 會有變數提升([hoisting](#/other_hoisting)) 與暴露到全域的問題
 
 --
 

@@ -1,10 +1,11 @@
 # Guide
+<!-- .slide: id="es6_guide" -->
 
 網路上的教學文章有一些比較舊，使用的是 ES5 的語法
 
 這裡列出建議的使用方式
 
----
+--
 
 ## 1. 總是使用 let, const 來宣告變數
 
@@ -55,7 +56,7 @@ Note:
 最簡單避免物件被更改的方式就是使用 JSON 轉成字串再轉回物件，缺點是遇到循環引用會拋出例外，且資料量大的話性能較差
 可以使用 facebook 出的 immutable-js
 
----
+--
 
 ## 2. 使用[箭頭函式](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Arrow_functions)取代一般函式
 因為它看起來比較簡潔，而且綁定了上下文 (context)，避免在傳遞 callback 時出了問題
@@ -119,7 +120,7 @@ const user = {
 
 > 比較常遇到忘記寫 `bind(this)` 的情況
 
----
+--
 
 ## 3. 使用 Default Value 取代條件判斷
 
@@ -139,7 +140,7 @@ var stringSplit = function(text, separator) {
 const stringSplit = (text, separator = " ") => text.split(separator);
 ```
 
----
+--
 
 ## 4. 使用[解構賦值](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)取代可選參數(optional parameter)
 
@@ -190,7 +191,7 @@ Note:
 (前提是要有好的變數命名)
 
 
----
+--
 
 ## 5. 使用[字串模板](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)取代字串串接
 
@@ -208,7 +209,7 @@ getUserData(data => {
 });
 ```
 
----
+--
 
 ## 6. 使用展開運算符([Spread Syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax))取代 arguments
 
@@ -244,7 +245,7 @@ const add = (a, b) => a + b;
 add(...[1, 2]); //3
 ```
 
----
+--
 
 ## 7. 使用[解構賦值](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)取出成員變數
 
@@ -275,7 +276,7 @@ const pow = math.pow;
 const {add, pow} = require('math_util');
 ```
 
----
+--
 
 ## 8. 使用 forEach, reduce 取代 for loop
 
@@ -404,7 +405,7 @@ const doubleAry = ary.map(num => num * 2);
 }, initValue); // default is [][0]
 ```
 
----
+--
 
 ## 9. 總是使用 "===" 取代 "=="
 
@@ -414,7 +415,3 @@ const doubleAry = ary.map(num => num * 2);
 ```
 
 see more about [Loose equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#Loose_equality_using)
-
----
-
-# END
