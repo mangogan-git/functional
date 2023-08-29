@@ -1,9 +1,8 @@
-live preview: https://github.com/mangogan-git/functional
+Live preview: [https://github.com/mangogan-git/functional](https://mangogan-git.github.io/functional/)
 
-# todo
-修改中...
+slides not implemented yet...
 
-# build local:
+## Build And Run
 ```shell
 npm run start
 ```
@@ -12,5 +11,4 @@ or
 npm run start -- --port=xxxx
 ```
 
-# slides hotkey
 press <kbd>?</kbd> see hotkey helper
